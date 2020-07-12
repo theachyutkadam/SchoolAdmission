@@ -3,12 +3,7 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :password, presence: true, length: { minimum: 6 }
 
-  def self.authenticate provided_username, provided_password
-    user = User.find_by(username: provided_username, password: provided_password)
-    if user
-      return true
-    else
-      return false
-    end
+  def self.authenticate username, password
+    User.find_by(username: username, password: password)
   end
 end
