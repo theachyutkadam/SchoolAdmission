@@ -34,6 +34,8 @@ group :development, :test do
   gem 'pry'
   gem 'awesome_print'
   gem 'rspec-rails', '~> 4.0.1'
+  # Create duplicate data for rspecs
+  gem 'factory_bot', '~> 4.8', '>= 4.8.2'
 end
 
 group :development do

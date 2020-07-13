@@ -3,12 +3,14 @@ require 'rails_helper'
 RSpec.describe Role, type: :model do
   context '#create' do
     it 'should create new role' do
-      Role.create({name: 'student'})
+      # Role.create({name: 'student'})
+      create(:role)
       expect(Role.count).to eq(1)
     end
 
     it 'it should not create role if name is empty' do
-      role = Role.new({name: ''})
+      # role = Role.new({name: ''})
+      role = build(:role, name: '')
       role.save
       expect(Role.count).to eq(0)
     end
@@ -28,7 +30,10 @@ RSpec.describe Role, type: :model do
     end
 
     it "should return false if role is not student" do
-      role = Role.new({name: "teacher"})
+      role = create(:role)
+      puts "------------------------------"
+      puts 
+      puts "------------------------------"
       is_student = role.student?
       expect(is_student).to be_falsey
     end
