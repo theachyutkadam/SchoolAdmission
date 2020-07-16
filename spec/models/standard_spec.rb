@@ -4,6 +4,7 @@ RSpec.describe Standard, type: :model do
   context "#create" do
     it 'shold create standard' do
       Standard.create({name: "first"})
+      # create(:student)
       expect(Standard.count).to eq(1)
     end
 
