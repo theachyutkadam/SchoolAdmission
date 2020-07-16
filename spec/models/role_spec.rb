@@ -16,7 +16,7 @@ RSpec.describe Role, type: :model do
     end
 
     it 'it should give error message if name is empty' do
-      role = Role.new({name: ''})
+      role = build(:role, name: '')
       role.save
       expect(role.errors.messages[:name].first).to eq("can't be blank")
     end
@@ -24,16 +24,13 @@ RSpec.describe Role, type: :model do
 
   context "#student?" do
     it "should return true if role is student" do
-      role = Role.new({name: "student"})
+      role = create(:role)
       is_student = role.student?
       expect(is_student).to be_truthy
     end
 
     it "should return false if role is not student" do
-      role = create(:role)
-      puts "------------------------------"
-      puts 
-      puts "------------------------------"
+      role = build(:role, name: 'teacher')
       is_student = role.student?
       expect(is_student).to be_falsey
     end

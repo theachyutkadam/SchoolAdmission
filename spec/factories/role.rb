@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :role do
-    name { "name" }
+    name { "student" }
   end
 end
