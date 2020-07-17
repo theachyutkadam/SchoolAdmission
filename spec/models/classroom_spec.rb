@@ -3,71 +3,49 @@ require 'rails_helper'
 RSpec.describe Classroom, type: :model do
   context '#create' do
     it 'should create new classroom' do
-      standard = Standard.create({name: "first"})
-      teacher = Teacher.create({
-        first_name: "rajesh",
-        middle_name: "vikas",
-        last_name: "kale",
-        mother_name: "anita",
-        gender: "male",
-        date_of_birth: Date.current - 35.year,
-        date_of_join: Date.current - 10.year,
-        aadhaar_card_number: "111111111111",
-        education: "M.C.A",
-        speciality: "Programming",
-        contact: "9879879870",
-        alternate_contact: "9879879870",
-        address: "",
-        is_active: true 
-      })
-      Classroom.new({division: 'A', medium: "marathi", standard_id: standard.id, teacher_id: teacher.id}).save
+      create(:classroom)
       expect(Classroom.count).to eq(1)
     end
+    it 'should create classroom with valid attributes' do
+      classroom = build(:classroom)
+      classroom.save
+      expect(classroom).to be_valid
+    end
+  end
 
-    it 'should not create new classroom if medium is empty' do
-      standard = Standard.create({name: "first"})
-      teacher = Teacher.create({
-        first_name: "rajesh",
-        middle_name: "vikas",
-        last_name: "kale",
-        mother_name: "anita",
-        gender: "male",
-        date_of_birth: Date.current - 35.year,
-        date_of_join: Date.current - 10.year,
-        aadhaar_card_number: "111111111111",
-        education: "M.C.A",
-        speciality: "Programming",
-        contact: "9879879870",
-        alternate_contact: "9879879870",
-        address: "",
-        is_active: true 
-      })
-      Classroom.new({division: 'A', medium: '', standard_id: standard.id, teacher_id: teacher.id}).save
-      expect(Classroom.count).to eq(0)
+  context '#validation' do
+    it 'is not valid if medium is empty' do
+      classroom = build(:classroom, medium: '')
+      classroom.save
+      expect(classroom).to_not be_valid
+    end
+
+    it 'is not valid if division is empty' do
+      classroom = build(:classroom, division: '')
+      classroom.save
+      expect(classroom).to_not be_valid
+    end
+
+    it 'should give error message if medium is empty' do
+      classroom = build(:classroom, medium: '')
+      classroom.save
+      expect(classroom.errors.messages[:medium].first).to eq("can't be blank")
     end
 
     it 'should give error message if division is empty' do
-      standard = Standard.create({name: "first"})
-      teacher = Teacher.create({
-        first_name: "rajesh",
-        middle_name: "vikas",
-        last_name: "kale",
-        mother_name: "anita",
-        gender: "male",
-        date_of_birth: Date.current - 35.year,
-        date_of_join: Date.current - 10.year,
-        aadhaar_card_number: "111111111111",
-        education: "M.C.A",
-        speciality: "Programming",
-        contact: "9879879870",
-        alternate_contact: "9879879870",
-        address: "",
-        is_active: true 
-      })
-      classroom = Classroom.new({division: '', medium: 'marathi', standard_id: standard.id, teacher_id: teacher.id})
+      classroom = build(:classroom, division: '')
       classroom.save
       expect(classroom.errors.messages[:division].first).to eq("can't be blank")
     end
+  end
 
+  context '#ActiveRecord associations' do
+    it 'should belongs_to teacher' do
+      expect(Classroom.reflect_on_association(:teacher).macro).to be(:belongs_to)
+    end
+
+    it 'should belongs_to standard' do
+      expect(Classroom.reflect_on_association(:standard).macro).to be(:belongs_to)
+    end
   end
 end

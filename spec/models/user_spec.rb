@@ -45,4 +45,10 @@ RSpec.describe User, type: :model do
       expect(is_valid).to be_truthy
     end
   end
+
+  context '#ActiveRecord associations' do
+    it 'should belongs_to role' do
+      expect(User.reflect_on_association(:role).macro).to be (:belongs_to)
+    end
+  end
 end

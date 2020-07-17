@@ -1,4 +1,4 @@
 class Standard < ApplicationRecord
-  validates :name, presence: true
   has_many :classrooms
+  validates :name, presence: true
 end
