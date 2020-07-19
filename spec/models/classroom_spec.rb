@@ -26,6 +26,12 @@ RSpec.describe Classroom, type: :model do
       expect(classroom).to_not be_valid
     end
 
+    it 'is not valid if intake is empty' do
+      classroom = build(:classroom, intake: '')
+      classroom.save
+      expect(classroom).to_not be_valid
+    end
+
     it 'should give error message if medium is empty' do
       classroom = build(:classroom, medium: '')
       classroom.save
@@ -36,6 +42,18 @@ RSpec.describe Classroom, type: :model do
       classroom = build(:classroom, division: '')
       classroom.save
       expect(classroom.errors.messages[:division].first).to eq("can't be blank")
+    end
+
+    it 'should give error message if intake is empty' do
+      classroom = build(:classroom, intake: '')
+      classroom.save
+      expect(classroom.errors.messages[:intake].first).to eq("can't be blank")
+    end
+
+    it 'should give error message if intake is not a number' do
+      classroom = build(:classroom, intake: 'invalid')
+      classroom.save
+      expect(classroom.errors.messages[:intake].first).to eq("is not a number")
     end
   end
 
