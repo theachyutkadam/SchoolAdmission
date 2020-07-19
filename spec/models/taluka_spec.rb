@@ -8,4 +8,19 @@ RSpec.describe Taluka, type: :model do
       expect(taluka).to be_valid
     end
   end
+
+  context "#delete" do
+    it "should destroy taluka" do
+      create(:taluka)
+      Taluka.destroy_all
+      expect(Taluka.count).to eq(0)
+    end
+  end
+
+  context "#ActiveRecord associations" do
+    it "should belongs_to district" do
+      expect(Taluka.reflect_on_association(:district).macro).to eq(:belongs_to)
+    end
+  end
+
 end
