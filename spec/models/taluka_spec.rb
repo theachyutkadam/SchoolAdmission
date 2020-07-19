@@ -21,6 +21,10 @@ RSpec.describe Taluka, type: :model do
     it "should belongs_to district" do
       expect(Taluka.reflect_on_association(:district).macro).to eq(:belongs_to)
     end
+
+    it 'should has_one student' do
+      expect(District.reflect_on_association(:student).macro).to eq(:has_one)
+    end
   end
 
 end
