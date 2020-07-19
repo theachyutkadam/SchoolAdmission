@@ -6,11 +6,13 @@ RSpec.describe Role, type: :model do
       create(:role)
       expect(Role.count).to eq(1)
     end
+  end
 
+  context '#validation' do
     it 'it should not create role if name is empty' do
       role = build(:role, name: '')
       role.save
-      expect(Role.count).to eq(0)
+      expect(role).to_not be_valid
     end
 
     it 'it should give error message if name is empty' do
