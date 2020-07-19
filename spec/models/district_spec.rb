@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe District, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "#create" do
+    it "should create new district" do
+      district = build(:district)
+      district.save
+      expect(district).to be_valid
+    end
+  end
 end
