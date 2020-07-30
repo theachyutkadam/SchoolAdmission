@@ -6,11 +6,11 @@ class UsersController < ApplicationController
     user = User.authenticate params[:login][:username], params[:login][:password]
     if user
       cookies[:user_id] = user.id
+      flash[:success] = 'Successfully Login.'
       redirect_to welcomes_index_path
-      flash[:notice] = "Successfully Log In."
     else
+      flash.now[:error] = "Login Field"
       render :new, status: 401
-      flash.alert = "invalid credentials"
     end
   end
 
