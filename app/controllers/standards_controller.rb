@@ -14,16 +14,20 @@ class StandardsController < ApplicationController
     @standard = Standard.new(standard_params)
     if @standard.save
       redirect_to standards_path
+      flash[:success] = "Standard Create Successfully"
     else
       render :new
+      flash[:notice] = "Standard Not Create"
     end
   end
 
   def update
     if @standard.update_attributes(standard_params)
       redirect_to standards_path
+      flash[:success] = "Standard Update Successfully"
     else
       render :edit
+      flash[:notice] = "Standard Not Update"
     end
   end
 
