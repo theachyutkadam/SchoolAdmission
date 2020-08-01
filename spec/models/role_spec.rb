@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe Role, type: :model do
   context '#create' do
     it 'should create new role' do
+      before_count = Role.count
       create(:role)
-      expect(Role.count).to eq(1)
+      expect(Role.count).to eq(before_count + 1)
     end
   end
 
