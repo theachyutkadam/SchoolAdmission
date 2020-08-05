@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def login
     user = User.authenticate params[:login][:username], params[:login][:password]
     if user
+      HardWorker.perform_async(5000)
       cookies[:user_id] = user.id
       flash[:success] = 'Successfully Login.'
       redirect_to welcomes_index_path
