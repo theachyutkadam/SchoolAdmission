@@ -12,10 +12,6 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
-    puts "==========================================="
-    puts @student.valid?
-    puts @student.errors.messages
-    puts "==========================================="
     if @student.save
       redirect_to students_path
       flash[:success] = "Student Successfully Created"

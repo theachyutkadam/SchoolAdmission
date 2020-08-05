@@ -26,9 +26,8 @@ RSpec.describe "Classrooms", type: :request do
       user = create(:user)
       post "/login", params: {login: {username: user.username, password: user.password}}
       classroom = create(:classroom)
-      get "/classrooms/'#{classroom.id}'/edit"
+      get "/classrooms/#{classroom.id}/edit"
       expect(response).to have_http_status(:success)
     end
   end
-
 end
