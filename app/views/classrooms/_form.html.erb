@@ -1,0 +1,11 @@
+<%=form_for @classroom do |f|%>
+  <%=f.select :division, options_for_select(('A'..'Z').to_a.map{|s| ["#{s}", s]})%><br><br>
+  <%=f.select :medium, options_for_select([['English', 'english'], ['Semi-English', 'semi-english'], ['Hindi', 'hindi'],['Marathi', 'marathi']])%><br><br>
+  <%=f.number_field :intake, placeholder: "Intake"%><br><br>
+
+  <%=f.collection_select :teacher_id, Teacher.all, :id, :first_name%><br><br>
+  <%=f.collection_select :standard_id, Standard.all, :id, :name%><br><br>
+
+  <%=f.submit%>
+  <%=link_to "Back", classrooms_path%>
+<%end%>

@@ -1,0 +1,22 @@
+<h3><%=link_to "Home", welcomes_index_path%></h3>
+<h3><%=link_to "New Classroom", new_classroom_path%></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Division</th>
+      <th>Medium</th>
+      <th>Intake</th>
+      <th>Action</th>
+    </tr>
+    <tbody>
+      <%@classrooms.each do |classroom|%>
+        <tr>
+          <td><%=classroom.division%></td>
+          <td><%=classroom.medium%></td>
+          <td><%=classroom.intake%></td>
+          <td><%=link_to "Edit", edit_classroom_path(classroom)%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </thead>
+</table>
