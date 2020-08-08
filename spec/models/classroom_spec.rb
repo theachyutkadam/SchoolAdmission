@@ -66,4 +66,14 @@ RSpec.describe Classroom, type: :model do
       expect(Classroom.reflect_on_association(:standard).macro).to be(:belongs_to)
     end
   end
+
+  context "#soft_delete" do
+    it 'should soft delete the record' do
+      classroom = create(:classroom)
+      expect(classroom.deleted_at).to be_nil
+      classroom.soft_delete
+      expect(classroom.deleted_at).not_to be_nil
+    end
+  end
+
 end

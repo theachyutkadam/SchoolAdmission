@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_19_091620) do
+ActiveRecord::Schema.define(version: 2020_08_08_161157) do
 
   create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "division"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_07_19_091620) do
     t.bigint "standard_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
     t.index ["standard_id"], name: "index_classrooms_on_standard_id"
     t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
   end
@@ -42,12 +43,14 @@ ActiveRecord::Schema.define(version: 2020_07_19_091620) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
   end
 
   create_table "standards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
   end
 
   create_table "states", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -76,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_07_19_091620) do
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
     t.index ["district_id"], name: "index_students_on_district_id"
     t.index ["state_id"], name: "index_students_on_state_id"
     t.index ["taluka_id"], name: "index_students_on_taluka_id"
@@ -106,6 +110,7 @@ ActiveRecord::Schema.define(version: 2020_07_19_091620) do
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|

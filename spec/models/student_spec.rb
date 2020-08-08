@@ -128,4 +128,13 @@ RSpec.describe Student, type: :model do
     end
   end
 
+  context "#soft_delete" do
+    it 'should soft delete the record' do
+      student = create(:student)
+      expect(student.deleted_at).to be_nil
+      student.soft_delete
+      expect(student.deleted_at).not_to be_nil
+    end
+  end
+
 end

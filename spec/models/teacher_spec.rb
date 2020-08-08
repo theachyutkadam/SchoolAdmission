@@ -144,4 +144,14 @@ RSpec.describe Teacher, type: :model do
       expect(Teacher.reflect_on_association(:classroom).macro).to eq(:has_one)
     end
   end
+
+  context "#soft_delete" do
+    it 'should soft delete the record' do
+      teacher = create(:teacher)
+      expect(teacher.deleted_at).to be_nil
+      teacher.soft_delete
+      expect(teacher.deleted_at).not_to be_nil
+    end
+  end
+
 end

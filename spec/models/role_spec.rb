@@ -36,4 +36,14 @@ RSpec.describe Role, type: :model do
       expect(is_student).to be_falsey
     end
   end
+
+  context "#soft_delete" do
+    it 'should soft delete the record' do
+      role = create(:role)
+      expect(role.deleted_at).to be_nil
+      role.soft_delete
+      expect(role.deleted_at).not_to be_nil
+    end
+  end
+
 end
