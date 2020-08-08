@@ -6,6 +6,8 @@
       <th>Division</th>
       <th>Medium</th>
       <th>Intake</th>
+      <th>Teacher</th>
+      <th>Standard</th>
       <th>Action</th>
     </tr>
     <tbody>
@@ -14,6 +16,8 @@
           <td><%=classroom.division%></td>
           <td><%=classroom.medium%></td>
           <td><%=classroom.intake%></td>
+          <td><%=teacher_full_name classroom.teacher%></td>
+          <td><%=classroom.standard.name%></td>
           <td><%=link_to "Edit", edit_classroom_path(classroom)%></td>
         </tr>
       <%end%>

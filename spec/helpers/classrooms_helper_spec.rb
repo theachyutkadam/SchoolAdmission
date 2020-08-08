@@ -1,15 +1,11 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ClassroomsHelper. For example:
-#
-# describe ClassroomsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe ClassroomsHelper, type: :helper do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  context "#teacher_full_name" do
+    it 'should return teacher full name' do
+      teacher = create(:teacher, first_name: "ram", last_name: "mule")
+      teacher_full_name = helper.teacher_full_name teacher
+      expect(teacher_full_name).to eq("ram mule")
+    end
+  end
 end
