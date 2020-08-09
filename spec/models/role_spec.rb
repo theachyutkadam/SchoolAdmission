@@ -23,17 +23,26 @@ RSpec.describe Role, type: :model do
     end
   end
 
-  context "#student?" do
-    it "should return true if role is student" do
+  context '#student?' do
+    it 'should return true if role is student' do
       role = create(:role)
       is_student = role.student?
       expect(is_student).to be_truthy
     end
 
-    it "should return false if role is not student" do
+    it 'should return false if role is not student' do
       role = build(:role, name: 'teacher')
       is_student = role.student?
       expect(is_student).to be_falsey
+    end
+  end
+
+  context '#soft_delete' do
+    it 'should soft delete the record' do
+      role = create(:role)
+      expect(role.deleted_at).to be_nil
+      role.soft_delete
+      expect(role.deleted_at).not_to be_nil
     end
   end
 end

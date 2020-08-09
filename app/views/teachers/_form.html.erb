@@ -1,0 +1,36 @@
+<%=form_for @teacher do |f|%>
+  <% if @teacher.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@teacher.errors.count, "error") %> prohibited
+        this teacher from being saved:
+      </h2>
+      <ul>
+        <% @teacher.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%=f.text_field :first_name, placeholder: "First Name"%><br><br>
+  <%=f.text_field :middle_name, placeholder: "Middle Name"%><br><br>
+  <%=f.text_field :last_name, placeholder: "Last Name"%><br><br>
+  <%=f.text_field :mother_name, placeholder: "Mother Name"%><br><br>
+  Birth Date:- <%=f.date_field :date_of_birth%><br><br>
+  Join Date:- <%=f.date_field :date_of_join%><br><br>
+  Gender:-<br>
+  Male<%=f.radio_button :gender, "Male"%>
+  Female<%=f.radio_button :gender, "Female"%>
+  Transgender<%=f.radio_button :gender, "Transgender"%><br><br>
+  <%=f.text_field :aadhaar_card_number, placeholder: "Aadhaar Card Number"%><br><br>
+  <%=f.text_field :education, placeholder: "Education"%><br><br>
+  <%=f.text_field :speciality, placeholder: "Speciality"%><br><br>
+  <%=f.text_field :contact, placeholder: "Contact"%><br><br>
+  <%=f.text_field :alternate_contact, placeholder: "Alternate Contact"%><br><br>
+  <%=f.text_area :address, placeholder: "Address"%><br><br>
+  Is Active:- <%=f.check_box :is_active%><br><br>
+
+  <%=f.submit%>
+  <%=link_to "Back", teachers_path%>
+<%end%>
