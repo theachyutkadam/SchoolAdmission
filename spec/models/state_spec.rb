@@ -25,9 +25,5 @@ RSpec.describe State, type: :model do
     it 'should has_many districts' do
       expect(State.reflect_on_association(:districts).macro).to eq(:has_many)
     end
-
-    it 'should has_one student' do
-      expect(District.reflect_on_association(:student).macro).to eq(:has_one)
-    end
   end
 end

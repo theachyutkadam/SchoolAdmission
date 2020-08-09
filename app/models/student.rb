@@ -1,8 +1,4 @@
 class Student < ApplicationRecord
-  belongs_to :state
-  belongs_to :district
-  belongs_to :taluka
-
   validates :first_name,
             :middle_name,
             :last_name,

@@ -114,20 +114,6 @@ RSpec.describe Student, type: :model do
     end
   end
 
-  context '#ActiveRecord association' do
-    it 'should belongs_to state' do
-      expect(Student.reflect_on_association(:state).macro).to eq(:belongs_to)
-    end
-
-    it 'should belongs_to district' do
-      expect(Student.reflect_on_association(:district).macro).to eq(:belongs_to)
-    end
-
-    it 'should belongs_to taluka' do
-      expect(Student.reflect_on_association(:taluka).macro).to eq(:belongs_to)
-    end
-  end
-
   context '#soft_delete' do
     it 'should soft delete the record' do
       student = create(:student)

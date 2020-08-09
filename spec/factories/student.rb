@@ -12,8 +12,5 @@ FactoryBot.define do
     is_handicap { false }
     handicap_details { 'no details' }
     is_active { true }
-    association :state
-    association :district
-    association :taluka
   end
 end

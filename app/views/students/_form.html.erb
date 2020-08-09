@@ -23,9 +23,6 @@
   Female<%=f.radio_button :gender, "Female"%>
   Transgender<%=f.radio_button :gender, "Transgender"%><br><br>
   <%=f.text_field :aadhaar_card_number, placeholder: "Aadhaar Card Number"%><br><br>
-  State:- <%=f.collection_select :state, State.all, :id, :name %><br><br>
-  District:- <%=f.collection_select :district, District.all, :id, :name %><br><br>
-  Taluka:- <%=f.collection_select :taluka, Taluka.all, :id, :name %><br><br>
   <%=f.text_field :town, placeholder: "Town Name"%><br><br>
   Is Handicap:- <%=f.check_box :is_handicap%><br><br>
   <%=f.text_area :handicap_details, placeholder: "Handicap Details"%><br><br>
