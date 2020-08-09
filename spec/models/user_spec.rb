@@ -8,21 +8,18 @@ RSpec.describe User, type: :model do
     end
 
     it 'should give error message if username is empty' do
-      # user = User.new
       user = build(:user, username: '')
       user.save
       expect(user.errors.messages[:username].first).to eq("can't be blank")
     end
 
     it 'should give error message if password is empty' do
-      # user = User.new({username: "username"})
       user = build(:user, password: '')
       user.save
       expect(user.errors.messages[:password].first).to eq("can't be blank")
     end
 
     it 'should give error message if password length less than 6 charactors' do
-      # user = User.new({username: "username", password: "654"})
       user = build(:user, password: '123')
       user.save
       expect(user.errors.messages[:password].first).to eq('is too short (minimum is 6 characters)')
@@ -36,8 +33,6 @@ RSpec.describe User, type: :model do
     end
 
     it 'should authenticate if credentials are valid' do
-      # role = Role.create({name: 'student'})
-      # user = User.new({username: "username", password: "123456", role_id: role.id})
       role = create(:role)
       user = build(:user, username: 'username', password: '123456', role_id: role.id)
       user.save
@@ -48,7 +43,7 @@ RSpec.describe User, type: :model do
 
   context '#ActiveRecord associations' do
     it 'should belongs_to role' do
-      expect(User.reflect_on_association(:role).macro).to be: belongs_to
+      expect(User.reflect_on_association(:role).macro).to be (:belongs_to)
     end
   end
 end
