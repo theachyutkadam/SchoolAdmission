@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user
-  def new;end
+  def new; end
 
   def login
     user = User.authenticate params[:login][:username], params[:login][:password]
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Successfully Login.'
       redirect_to welcomes_index_path
     else
-      flash.now[:error] = "Login Field"
+      flash.now[:error] = 'Login Field'
       render :new, status: 401
     end
   end

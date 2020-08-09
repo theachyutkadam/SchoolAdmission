@@ -10,5 +10,5 @@ class Student < ApplicationRecord
             :date_of_birth,
             :aadhaar_card_number,
             presence: true
-  validates :aadhaar_card_number, numericality: true, uniqueness: true, :length => {:is => 12}
+  validates :aadhaar_card_number, numericality: true, uniqueness: true, length: { is: 12 }
 end

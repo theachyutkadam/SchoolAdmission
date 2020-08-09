@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     current_user = User.find_by_id(cookies[:user_id])
-    if current_user.nil?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.nil?
   end
 end
