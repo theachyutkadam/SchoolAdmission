@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if user
       cookies[:user_id] = user.id
       flash[:success] = 'Successfully Login.'
-      redirect_to welcomes_index_path(user: user)
+      redirect_to welcomes_index_path
     else
       flash.now[:error] = 'Login Field'
       render :new, status: 401
