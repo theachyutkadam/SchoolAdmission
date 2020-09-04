@@ -1,12 +1,11 @@
 class WelcomesController < ApplicationController
   def index
-    user = User.find params[:user]
-    @user_login = user.role.name
-    if user.role.name == "Headmaster"
+    @current_user_role = current_user.role.name
+    if @current_user_role == "Headmaster"
       headmaster_dashboard
-    elsif user.role.name == "Teacher"
+    elsif @current_user_role == "Teacher"
       teacher_dashboard
-    else user.role.name == "Student"
+    else @current_user_role == "Student"
       student_dashboard
     end
   end
@@ -18,9 +17,7 @@ class WelcomesController < ApplicationController
   end
 
   def teacher_dashboard
-    puts "****************"
-    puts "Teacher"
-    puts "****************"
+    @student =Student.all
   end
 
   def headmaster_dashboard
@@ -28,5 +25,4 @@ class WelcomesController < ApplicationController
     puts "Headmaster"
     puts "****************"
   end
-
 end
