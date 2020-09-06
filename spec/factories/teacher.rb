@@ -10,7 +10,7 @@ FactoryBot.define do
     aadhaar_card_number { '111111111111' }
     education { 'M.C.A' }
     speciality { 'Programming' }
-    contact { '9879879870' }
+    contact { SecureRandom.random_number(1111111111..9999999999).to_s }
     alternate_contact { '9879879871' }
     address { 'at- saykhindi, tal- sangamner, dist- ahemadnagar' }
     is_active { true }

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context '#create' do
     it 'should create new user' do
-      create(:user)
+      user = create(:user)
       expect(User.count).to eq(1)
     end
 
