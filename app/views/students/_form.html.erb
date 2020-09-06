@@ -22,6 +22,8 @@
   Male<%=f.radio_button :gender, "Male"%>
   Female<%=f.radio_button :gender, "Female"%>
   Transgender<%=f.radio_button :gender, "Transgender"%><br><br>
+  Standard:- <%=f.collection_select :standard_id, Standard.all, :id, :name%><br><br>
+  Classroom:- <%=f.collection_select :classroom_id, Classroom.all, :id, :medium%><br><br>
   <%=f.text_field :aadhaar_card_number, placeholder: "Aadhaar Card Number"%><br><br>
   <%=f.text_field :town, placeholder: "Town Name"%><br><br>
   Is Handicap:- <%=f.check_box :is_handicap%><br><br>

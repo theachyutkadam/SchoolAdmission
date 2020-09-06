@@ -122,4 +122,15 @@ RSpec.describe Student, type: :model do
       expect(student.deleted_at).not_to be_nil
     end
   end
+
+  context '#ActiveRecord associations' do
+    it 'should belongs_to standard' do
+      expect(Student.reflect_on_association(:standard).macro).to eq(:belongs_to)
+    end
+
+    it 'should belongs_to classroom' do
+      expect(Student.reflect_on_association(:classroom).macro).to eq(:belongs_to)
+    end
+  end
+
 end

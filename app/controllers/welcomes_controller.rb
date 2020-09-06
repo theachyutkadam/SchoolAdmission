@@ -17,7 +17,7 @@ class WelcomesController < ApplicationController
   end
 
   def teacher_dashboard
-    @student =Student.all
+    @students =Teacher.first.classroom.students
   end
 
   def headmaster_dashboard

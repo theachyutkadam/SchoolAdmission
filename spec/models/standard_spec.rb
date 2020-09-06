@@ -23,8 +23,12 @@ RSpec.describe Standard, type: :model do
   end
 
   context 'ActiveRecord associations' do
-    it 'should has_many standard' do
+    it 'should has_many classroom' do
       expect(Standard.reflect_on_association(:classrooms).macro).to eq(:has_many)
+    end
+
+    it 'should has_many student' do
+      expect(Standard.reflect_on_association(:students).macro).to eq(:has_many)
     end
   end
 

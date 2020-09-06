@@ -65,6 +65,11 @@ RSpec.describe Classroom, type: :model do
     it 'should belongs_to standard' do
       expect(Classroom.reflect_on_association(:standard).macro).to be(:belongs_to)
     end
+
+    it 'should has_many student' do
+      expect(Standard.reflect_on_association(:students).macro).to eq(:has_many)
+    end
+
   end
 
   context '#soft_delete' do

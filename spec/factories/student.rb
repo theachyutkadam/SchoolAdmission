@@ -7,7 +7,8 @@ FactoryBot.define do
     gender { 'male' }
     date_of_birth { Date.current - 10.year }
     aadhaar_card_number { '121212121212' }
-    standard { 'standard' }
+    association :standard
+    association :classroom
     town { 'town' }
     is_handicap { false }
     handicap_details { 'no details' }
