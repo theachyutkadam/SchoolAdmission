@@ -7,34 +7,34 @@ RSpec.describe 'Welcomes', type: :request do
       expect(response).to have_http_status(302)
     end
     it 'returns http success' do
-      user = create(:user, username: 'ravi', password: '123456')
+      user = create(:user)
       post '/login', params: { login: { username: user.username, password: user.password } }
       get '/welcomes/index'
       expect(response).to have_http_status(:success)
     end
 
     it 'should student login' do
-      role = create(:role, name: 'Student')
-      user = create(:user, username: 'student', password: '123456', role_id: role.id)
-      post '/login', params: { login: { username: user.username, password: user.password } }
+      student = create(:student)
+      post '/login', params: { login: { username: student.user.username, password: student.user.password } }
       get '/welcomes/index'
       expect(response).to have_http_status(:success)
     end
 
     it 'should teacher login' do
-      role = create(:role, name: 'Teacher')
-      user = create(:user, username: 'teacher', password: '123456', role_id: role.id)
-      post '/login', params: { login: { username: user.username, password: user.password } }
+      standard = create(:standard)
+      teacher = create(:teacher)
+      classroom = create(:classroom, teacher: teacher)
+      create(:student, standard: standard, classroom: classroom)
+      post '/login', params: { login: { username: teacher.user.username, password: teacher.user.password } }
       get '/welcomes/index'
       expect(response).to have_http_status(:success)
     end
 
-    it 'should headmaster login' do
-      role = create(:role, name: 'Headmaster')
-      user = create(:user, username: 'headmaster', password: '123456', role_id: role.id)
-      post '/login', params: { login: { username: user.username, password: user.password } }
-      get '/welcomes/index'
-      expect(response).to have_http_status(:success)
-    end
+    # it 'should headmaster login' do
+    #   student = create(:student)
+    #   post '/login', params: { login: { username: user.username, password: user.password } }
+    #   get '/welcomes/index'
+    #   expect(response).to have_http_status(:success)
+    # end
   end
 end
