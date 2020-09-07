@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_102548) do
+ActiveRecord::Schema.define(version: 2020_09_07_113342) do
 
   create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "division"
@@ -113,13 +113,11 @@ ActiveRecord::Schema.define(version: 2020_09_06_102548) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "username"
     t.string "password"
-    t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "login_id"
     t.string "login_type"
     t.index ["login_id", "login_type"], name: "index_users_on_login_id_and_login_type"
-    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "classrooms", "standards"
@@ -127,5 +125,4 @@ ActiveRecord::Schema.define(version: 2020_09_06_102548) do
   add_foreign_key "districts", "states"
   add_foreign_key "states", "countries"
   add_foreign_key "talukas", "districts"
-  add_foreign_key "users", "roles"
 end
