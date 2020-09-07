@@ -1,11 +1,3 @@
-headmaster = Role.create(name: 'Headmaster')
-teacher = Role.create(name: 'Teacher')
-student = Role.create(name: 'Student')
-
-User.create(username: 'headmaster', password: '123456', role_id: headmaster.id)
-User.create(username: 'teacher', password: '123456', role_id: teacher.id)
-User.create(username: 'student', password: '123456', role_id: student.id)
-
 country = Country.create(name: 'India')
 state = State.create(name: 'Maharashtra', country: country)
 ahemadnagar = District.create(name: 'Ahemadnagar', state: state)

@@ -10,11 +10,9 @@ class Teacher < ApplicationRecord
 
   private
   def create_user
-    role = Role.find_by(name: "Teacher").id
     User.create(
                 username: "#{self.last_name+'_'+self.contact.last(4)}",
                 password:"123456",
-                role_id: role,
                 login: self
               )
   end

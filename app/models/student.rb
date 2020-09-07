@@ -15,10 +15,8 @@ class Student < ApplicationRecord
 
   private
   def create_user
-    role = Role.find_by(name: "Student").id
     User.create(
                 username: "#{self.last_name+'_'+self.aadhaar_card_number.last(4)}",
-                role_id: role,
                 password: "123456",
                 login: self
     )
