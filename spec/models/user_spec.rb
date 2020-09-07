@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
   end
 
   context '#ActiveRecord associations' do
-    it 'should has_many role' do
+    it 'should belongs_to login' do
       expect(User.reflect_on_association(:login).macro).to eq(:belongs_to)
     end
   end
