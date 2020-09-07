@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_080946) do
+ActiveRecord::Schema.define(version: 2020_09_07_115134) do
 
   create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "division"
@@ -39,13 +39,6 @@ ActiveRecord::Schema.define(version: 2020_08_09_080946) do
     t.index ["state_id"], name: "index_districts_on_state_id"
   end
 
-  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at"
-  end
-
   create_table "standards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -69,7 +62,6 @@ ActiveRecord::Schema.define(version: 2020_08_09_080946) do
     t.string "gender"
     t.date "date_of_birth"
     t.string "aadhaar_card_number"
-    t.string "standard"
     t.string "town"
     t.boolean "is_handicap"
     t.text "handicap_details"
@@ -77,6 +69,10 @@ ActiveRecord::Schema.define(version: 2020_08_09_080946) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at"
+    t.bigint "standard_id"
+    t.bigint "classroom_id"
+    t.index ["classroom_id"], name: "index_students_on_classroom_id"
+    t.index ["standard_id"], name: "index_students_on_standard_id"
   end
 
   create_table "talukas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -110,10 +106,11 @@ ActiveRecord::Schema.define(version: 2020_08_09_080946) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "username"
     t.string "password"
-    t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["role_id"], name: "index_users_on_role_id"
+    t.integer "login_id"
+    t.string "login_type"
+    t.index ["login_id", "login_type"], name: "index_users_on_login_id_and_login_type"
   end
 
   add_foreign_key "classrooms", "standards"
@@ -121,5 +118,4 @@ ActiveRecord::Schema.define(version: 2020_08_09_080946) do
   add_foreign_key "districts", "states"
   add_foreign_key "states", "countries"
   add_foreign_key "talukas", "districts"
-  add_foreign_key "users", "roles"
 end

@@ -1,17 +1,14 @@
-country = Country.create(name: 'India')
-state = State.create(name: 'Maharashtra', country: country)
-ahemadnagar = District.create(name: 'Ahemadnagar', state: state)
-pune = District.create(name: 'Pune', state: state)
-
-Taluka.create(name: 'Sangamner', district: ahemadnagar)
-Taluka.create(name: 'Koprgoan', district: ahemadnagar)
-Taluka.create(name: 'Mulashi', district: pune)
 
 teacher1 = Teacher.create(first_name: "ganesh", middle_name: "sitaram", last_name: "kale", mother_name: "indubai", gender: "male", date_of_birth: '24/01/1993', date_of_join: "12/11/2015", aadhaar_card_number: "123654789852", education: "M.com", speciality: "hindi", contact: "9552273780", address: "Saykhindi", is_active: true)
+User.create(username: "#{teacher1.last_name+'_'+teacher1.contact.last(4)}", password: "123456", role_id: teacher.id)
 teacher2 = Teacher.create(first_name: "achyut", middle_name: "dilip", last_name: "kadam", mother_name: "lalita", gender: "male", date_of_birth: '02/07/1996', date_of_join: "12/11/2018", aadhaar_card_number: "123654789777", education: "M.C.A", speciality: "I.T", contact: "7030462978", address: "Saykhindi", is_active: true)
+User.create(username: "#{teacher2.last_name+'_'+teacher2.contact.last(4)}", password: "123456", role_id: teacher.id)
 teacher3 = Teacher.create(first_name: "suryakant", middle_name: "dilip", last_name: "kadam", mother_name: "lalita", gender: "male", date_of_birth: '16/05/1992', date_of_join: "12/11/2014", aadhaar_card_number: "123654789778", education: "S.S.C", speciality: "jistory", contact: "9673151455", address: "Saykhindi", is_active: true)
+User.create(username: "#{teacher3.last_name+'_'+teacher3.contact.last(4)}", password: "123456", role_id: teacher.id)
 teacher4 = Teacher.create(first_name: "ravi", middle_name: "dilip", last_name: "kadam", mother_name: "lalita", gender: "male", date_of_birth: '31/03/1991', date_of_join: "10/11/2012", aadhaar_card_number: "123654789779", education: "M.C.A", speciality: "I.T", contact: "9158308762", address: "Saykhindi", is_active: true)
+User.create(username: "#{teacher4.last_name+'_'+teacher4.contact.last(4)}", password: "123456", role_id: teacher.id)
 teacher5 = Teacher.create(first_name: "tejas", middle_name: "chandrakant", last_name: "kadam", mother_name: "vanita", gender: "male", date_of_birth: '06/09/2002', date_of_join: "10/11/2019", aadhaar_card_number: "123654788889", education: "M.C.A", speciality: "math", contact: "9158308752", address: "Saykhindi", is_active: true)
+User.create(username: "#{teacher5.last_name+'_'+teacher5.contact.last(4)}", password: "123456", role_id: teacher.id)
 
 standard1 = Standard.create(name: "first")
 classroom1_A = Classroom.create(division: "A", medium: "marathi", intake: 50, teacher_id: teacher1.id, standard_id: standard1.id)
@@ -78,7 +75,3 @@ student47 = Student.create(first_name: "first_aa47", middle_name: "middle_bb47",
 student48 = Student.create(first_name: "first_aa48", middle_name: "middle_bb48", last_name: "last_cc48", mother_name: "mother_dd48", gender: "male", date_of_birth: "14/02/1999", aadhaar_card_number: "987456258121", town: "saykhindi", is_handicap: false, handicap_details: nil, is_active: true, standard_id: standard3.id, classroom_id: classroom3_A.id)
 student49 = Student.create(first_name: "first_aa49", middle_name: "middle_bb49", last_name: "last_cc49", mother_name: "mother_dd49", gender: "male", date_of_birth: "14/02/1999", aadhaar_card_number: "987456258122", town: "saykhindi", is_handicap: false, handicap_details: nil, is_active: true, standard_id: standard3.id, classroom_id: classroom3_A.id)
 student50 = Student.create(first_name: "first_aa50", middle_name: "middle_bb50", last_name: "last_cc50", mother_name: "mother_dd50", gender: "male", date_of_birth: "14/02/1999", aadhaar_card_number: "987456258123", town: "saykhindi", is_handicap: false, handicap_details: nil, is_active: true, standard_id: standard3.id, classroom_id: classroom3_A.id)
-
-puts '========================='
-puts 'Seed file successfully loaded!!!'
-puts '========================='

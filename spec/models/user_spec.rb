@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context '#create' do
     it 'should create new user' do
-      create(:user)
-      expect(User.count).to eq(1)
+      user = build(:user)
+      user.save
+      expect(user).to be_valid
     end
 
     it 'should give error message if username is empty' do
@@ -33,8 +34,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'should authenticate if credentials are valid' do
-      role = create(:role)
-      user = build(:user, username: 'username', password: '123456', role_id: role.id)
+      user = build(:user, username: 'username', password: '123456')
       user.save
       is_valid = User.authenticate('username', '123456')
       expect(is_valid).to be_truthy
@@ -42,8 +42,8 @@ RSpec.describe User, type: :model do
   end
 
   context '#ActiveRecord associations' do
-    it 'should belongs_to role' do
-      expect(User.reflect_on_association(:role).macro).to be (:belongs_to)
+    it 'should belongs_to login' do
+      expect(User.reflect_on_association(:login).macro).to eq(:belongs_to)
     end
   end
 end

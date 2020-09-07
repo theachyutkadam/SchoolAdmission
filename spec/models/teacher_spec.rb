@@ -132,8 +132,8 @@ RSpec.describe Teacher, type: :model do
     end
 
     it 'should give error message if contact not unique' do
-      create(:teacher)
-      teacher = build(:teacher)
+      create(:teacher, contact: '3333333333')
+      teacher = build(:teacher, contact: '3333333333')
       teacher.save
       expect { teacher.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
