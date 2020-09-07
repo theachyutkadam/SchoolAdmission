@@ -9,14 +9,19 @@ class Student < ApplicationRecord
   validates :aadhaar_card_number, numericality: true, uniqueness: true, length: { is: 12 }
   belongs_to :standard
   belongs_to :classroom
+  has_one :user, as: :login
 
-  # before_create :create_user
+  after_create :create_user
 
-  # private
-
-  # def create_user
-  #   role = Role.find_by(name: "Teacher")
-  #   User.create(username: "#{self.last_name+'_'+rand.(1111..9999)}", role_id: role, password: "123456")
-  # end
+  private
+  def create_user
+    role = Role.find_by(name: "Student").id
+    User.create(
+                username: "#{self.last_name+'_'+self.aadhaar_card_number.last(4)}",
+                role_id: role,
+                password: "123456",
+                login: self
+    )
+  end
 
 end
