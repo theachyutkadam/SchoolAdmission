@@ -2,27 +2,11 @@ class WelcomesController < ApplicationController
   def index
     @current_user_role = current_user.role.name
     if @current_user_role == "Headmaster"
-      headmaster_dashboard
+      @teachers =Teacher.all
+      @students =Student.all
     elsif @current_user_role == "Teacher"
-      teacher_dashboard
+      @students = Teacher.find(current_user.login_id).classroom.students
     else @current_user_role == "Student"
-      student_dashboard
     end
-  end
-
-  def student_dashboard
-    puts "****************"
-    puts "Student"
-    puts "****************"
-  end
-
-  def teacher_dashboard
-    @students =Teacher.first.classroom.students
-  end
-
-  def headmaster_dashboard
-    puts "****************"
-    puts "Headmaster"
-    puts "****************"
   end
 end
