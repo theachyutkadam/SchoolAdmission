@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_115134) do
+ActiveRecord::Schema.define(version: 2020_09_08_114836) do
+
+  create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.boolean "is_present"
+    t.bigint "student_id", null: false
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+    t.index ["teacher_id"], name: "index_attendances_on_teacher_id"
+  end
 
   create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "division"
@@ -113,6 +123,8 @@ ActiveRecord::Schema.define(version: 2020_09_07_115134) do
     t.index ["login_id", "login_type"], name: "index_users_on_login_id_and_login_type"
   end
 
+  add_foreign_key "attendances", "students"
+  add_foreign_key "attendances", "teachers"
   add_foreign_key "classrooms", "standards"
   add_foreign_key "classrooms", "teachers"
   add_foreign_key "districts", "states"
