@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :students
   resources :standards
   resources :classrooms
+  resources :attendances
 end
