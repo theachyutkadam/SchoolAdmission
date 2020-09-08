@@ -123,6 +123,14 @@ RSpec.describe Student, type: :model do
     end
   end
 
+  context "#create_user" do
+    it "should create user after student successfully created" do
+      create(:student)
+      user = User.last.login_type
+      expect(user).to eq("Student")
+    end
+  end
+
   context '#ActiveRecord associations' do
     it 'should belongs_to standard' do
       expect(Student.reflect_on_association(:standard).macro).to eq(:belongs_to)
