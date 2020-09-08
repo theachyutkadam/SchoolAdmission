@@ -3,19 +3,15 @@
 <table>
   <thead>
     <tr>
-      <th>Division</th>
-      <th>Medium</th>
-      <th>Intake</th>
-      <th>Teacher</th>
-      <th>Standard</th>
+      <th>Student</th>
+      <th>IsPresent</th>
       <th>Action</th>
     </tr>
     <tbody>
       <%@attendances.each do |attendance|%>
         <tr>
-          <td><%=attendance.is_present%></td>
           <td><%=attendance.student.last_name%></td>
-          <td><%=attendance.teacher.last_name%></td>
+          <td><%=attendance.is_present%></td>
           <td><%=link_to "Edit", edit_attendance_path(attendance)%></td>
         </tr>
       <%end%>
