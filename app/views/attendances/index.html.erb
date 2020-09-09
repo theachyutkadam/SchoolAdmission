@@ -1,5 +1,5 @@
 <h3><%=link_to "Home", welcomes_index_path%></h3>
-<h3><%#=link_to "New Classroom", new_classroom_path%></h3>
+
 <table>
   <thead>
     <tr>
@@ -7,14 +7,14 @@
       <th>IsPresent</th>
       <th>Action</th>
     </tr>
-    <tbody>
-      <%@attendances.each do |attendance|%>
-        <tr>
-          <td><%=attendance.student.last_name%></td>
-          <td><%=attendance.is_present%></td>
-          <td><%=link_to "Edit", edit_attendance_path(attendance)%></td>
-        </tr>
-      <%end%>
-    </tbody>
   </thead>
+  <tbody>
+    <%@attendances.each do |attendance|%>
+    <tr>
+      <td><%=student_full_name attendance.student%></td>
+      <td><%=attendance.is_present%></td>
+      <td><%=link_to "Edit", edit_attendance_path(attendance)%></td>
+    </tr>
+    <%end%>
+  </tbody>
 </table>
