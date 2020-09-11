@@ -143,6 +143,10 @@ RSpec.describe Teacher, type: :model do
     it 'should has_one classroom' do
       expect(Teacher.reflect_on_association(:classroom).macro).to eq(:has_one)
     end
+
+    it 'should has_many addresses' do
+      expect(Teacher.reflect_on_association(:addresses).macro).to eq(:has_many)
+    end
   end
 
   context '#soft_delete' do

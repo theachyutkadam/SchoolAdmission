@@ -10,6 +10,7 @@ class Student < ApplicationRecord
   belongs_to :standard
   belongs_to :classroom
   has_one :user, as: :login
+  has_many :addresses, as: :addressable
 
   after_create :create_user
 
