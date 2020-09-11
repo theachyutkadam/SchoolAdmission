@@ -17,12 +17,10 @@
   State:- <%=f.collection_select :state_id, State.all, :id, :name%><br><br>
   District:- <%=f.collection_select :district_id, District.all, :id, :name%><br><br>
   Taluka:- <%=f.collection_select :taluka_id, Taluka.all, :id, :name%><br><br>
+  <%f.hidden_field :user, value: @user.id%><br><br>
   <%=f.text_field :pincode, placeholder: "Pincode"%><br><br>
-  addressable_id:- <%=f.text_field :addressable_id, value: @addressable.id%><br><br>
-  addressable_type:- <%=f.text_field :addressable_type, value: @addressable.model_name.name%><br><br>
   <%=f.submit%>
   <%=link_to "Back", teachers_path%>
 <%end%>
-
 
 <%= render 'index'%>

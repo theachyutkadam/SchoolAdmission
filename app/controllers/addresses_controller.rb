@@ -1,20 +1,17 @@
 class AddressesController < ApplicationController
   before_action :find_address, only: %i[edit update]
-  before_action :build_address, only: %i[new, create]
+  before_action :build_address, only: %i[new create]
 
   def index;end
 
   def new
-    if params.include?("student")
-      @addressable = Student.find(params[:student].to_i)
-    else
-      @addressable = Teacher.find(params[:teacher].to_i)
-    end
-    @address = Address.new
+    @user = User.find(params[:user])
     @addresses = Address.all
   end
 
-  def edit;end
+  def edit
+    @addresses = Address.all
+  end
 
   def create
     @address = Address.new(address_params)

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :addresses
   belongs_to :login, polymorphic: true
   validates :username, presence: true
   validates :password, presence: true, length: { minimum: 6 }

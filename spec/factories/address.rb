@@ -5,14 +5,6 @@ FactoryBot.define do
     association :state
     association :district
     association :taluka
-
-    for_student #default select :for_student trait if none is specified
-    trait :for_student do
-      association :addressable, factory: :student
-    end
-
-    trait :for_teacher do
-      association :addressable, factory: :teacher
-    end
+    association :user
   end
 end
