@@ -158,12 +158,11 @@ RSpec.describe Teacher, type: :model do
     end
   end
 
-  context "#create_user" do
-    it "should create user after teacher successfully created" do
+  context '#create_user' do
+    it 'should create user after teacher successfully created' do
       create(:teacher)
       user = User.last.login_type
-      expect(user).to eq("Teacher")
+      expect(user).to eq('Teacher')
     end
   end
-
 end

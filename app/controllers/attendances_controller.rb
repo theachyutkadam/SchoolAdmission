@@ -5,9 +5,9 @@ class AttendancesController < ApplicationController
     @attendances = Attendance.all
   end
 
-  def new;end
+  def new; end
 
-  def edit;end
+  def edit; end
 
   def create
     @attendance = Attendance.new(attendance_params)
@@ -43,6 +43,4 @@ class AttendancesController < ApplicationController
   def attendance_params
     params.require(:attendance).permit(:is_present, :student_id, :teacher_id)
   end
-
-
 end

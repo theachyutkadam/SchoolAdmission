@@ -12,6 +12,5 @@ FactoryBot.define do
     trait :for_teacher do
       association :login, factory: :teacher
     end
-
   end
 end

@@ -69,7 +69,6 @@ RSpec.describe Classroom, type: :model do
     it 'should has_many student' do
       expect(Classroom.reflect_on_association(:students).macro).to eq(:has_many)
     end
-
   end
 
   context '#soft_delete' do

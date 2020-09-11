@@ -20,12 +20,12 @@ class Student < ApplicationRecord
   after_create :create_user
 
   private
+
   def create_user
     User.create(
-                username: "#{self.last_name+'_'+self.aadhaar_card_number.last(4)}",
-                password: "123456",
-                login: self
+      username: (last_name + '_' + aadhaar_card_number.last(4)).to_s,
+      password: '123456',
+      login: self
     )
   end
-
 end
