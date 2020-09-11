@@ -21,5 +21,9 @@ RSpec.describe Taluka, type: :model do
     it 'should belongs_to district' do
       expect(Taluka.reflect_on_association(:district).macro).to eq(:belongs_to)
     end
+
+    it 'should has_many addresses' do
+      expect(Country.reflect_on_association(:addresses).macro).to eq(:has_many)
+    end
   end
 end

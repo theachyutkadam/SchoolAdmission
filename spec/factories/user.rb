@@ -3,7 +3,7 @@ FactoryBot.define do
     username { 'student' }
     password { '123456' }
 
-    for_student # default to the :for_photo trait if none is specified
+    for_student # default to the :for_student trait if none is specified
 
     trait :for_student do
       association :login, factory: :student

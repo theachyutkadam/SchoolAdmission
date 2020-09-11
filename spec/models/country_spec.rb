@@ -21,5 +21,9 @@ RSpec.describe Country, type: :model do
     it 'should has_many states' do
       expect(Country.reflect_on_association(:states).macro).to eq(:has_many)
     end
+
+    it 'should has_many addresses' do
+      expect(Country.reflect_on_association(:addresses).macro).to eq(:has_many)
+    end
   end
 end
