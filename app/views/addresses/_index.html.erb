@@ -1,0 +1,23 @@
+<h3><%=link_to "Home", welcomes_index_path%></h3>
+<h3><%=link_to "New Address", new_address_path%></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>State</th>
+      <th>District</th>
+      <th>Pincode</th>
+    </tr>
+    <tbody>
+      <%@addresses.each do |address|%>
+        <tr>
+          <td><%=address.country.name%></td>
+          <td><%=address.state.name%></td>
+          <td><%=address.district.name%></td>
+          <td><%=address.pincode%></td>
+          <td><%=link_to "Edit", edit_address_path(address)%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </thead>
+</table>
