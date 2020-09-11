@@ -22,6 +22,7 @@
           <td><%=student.first_name%></td>
           <td><%=student_full_name student%></td>
           <td><%=link_to "Edit", edit_student_path(student)%></td>
+          <td><%=link_to "Address", new_address_path(user: student.user.id)%></td>
         </tr>
       <%end%>
     </tbody>

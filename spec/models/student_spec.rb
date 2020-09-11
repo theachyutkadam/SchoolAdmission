@@ -139,6 +139,9 @@ RSpec.describe Student, type: :model do
     it 'should belongs_to classroom' do
       expect(Student.reflect_on_association(:classroom).macro).to eq(:belongs_to)
     end
-  end
 
+    it 'should has_many addresses' do
+      expect(Student.reflect_on_association(:addresses).macro).to eq(:has_many)
+    end
+  end
 end

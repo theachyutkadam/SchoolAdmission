@@ -12,6 +12,10 @@ class Student < ApplicationRecord
             :aadhaar_card_number,
             presence: true
   validates :aadhaar_card_number, numericality: true, uniqueness: true, length: { is: 12 }
+  belongs_to :standard
+  belongs_to :classroom
+  has_one :user, as: :login
+  has_many :addresses, as: :addressable
 
   after_create :create_user
 
