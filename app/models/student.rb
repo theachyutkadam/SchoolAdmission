@@ -1,4 +1,9 @@
 class Student < ApplicationRecord
+  belongs_to :standard
+  belongs_to :classroom
+  has_one :attendance
+  has_one :user, as: :login
+
   validates :first_name,
             :middle_name,
             :last_name,

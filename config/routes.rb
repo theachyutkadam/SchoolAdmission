@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :standards
   resources :classrooms
   resources :addresses
+  resources :attendances
 end

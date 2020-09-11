@@ -1,0 +1,7 @@
+<%=form_for @attendance do |f|%>
+  Student:- <%=f.collection_select :student_id, Student.all, :id, :last_name%><br><br>
+  Teacher:- <%=f.collection_select :teacher_id, Teacher.all, :id, :last_name%><br><br>
+  IsPresent:- <%=f.radio_button :is_present, "present"%><br><br>
+  <%=f.submit%>
+  <%=link_to "Back", attendances_path%>
+<%end%>
