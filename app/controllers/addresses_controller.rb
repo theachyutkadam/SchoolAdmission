@@ -10,13 +10,16 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    user = @address.user.id
+    @user = User.find(user)
     @addresses = Address.all
   end
 
   def create
     @address = Address.new(address_params)
+
     if @address.save
-      redirect_to addresses_path
+      redirect_to new_address_path(user: @address.user_id)
       flash[:success] = "Address Create Successfully"
     else
       render :new
@@ -26,7 +29,7 @@ class AddressesController < ApplicationController
 
   def update
     if @address.update_attributes(address_params)
-      redirect_to addresses_path
+      redirect_to new_address_path(user: @address.user_id)
       flash[:success] = "Address Update Successfully"
     else
       render :edit
@@ -45,8 +48,7 @@ class AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:country_id, :state_id, :district_id, :taluka_id, :pincode, :addressable_id, :addressable_type)
+    params.require(:address).permit(:country_id, :state_id, :district_id, :taluka_id, :pincode, :user_id)
   end
-
 
 end
