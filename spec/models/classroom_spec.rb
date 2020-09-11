@@ -67,7 +67,7 @@ RSpec.describe Classroom, type: :model do
     end
 
     it 'should has_many student' do
-      expect(Standard.reflect_on_association(:students).macro).to eq(:has_many)
+      expect(Classroom.reflect_on_association(:students).macro).to eq(:has_many)
     end
 
   end
