@@ -144,5 +144,4 @@ RSpec.describe Student, type: :model do
       expect(Student.reflect_on_association(:addresses).macro).to eq(:has_many)
     end
   end
-
 end
