@@ -1,8 +1,13 @@
 class Student < ApplicationRecord
-  belongs_to :standard
-  belongs_to :classroom
   has_one :attendance
   has_one :user, as: :login
+  has_one :user, as: :login
+
+  belongs_to :standard
+  belongs_to :classroom
+  has_many :addresses
+  belongs_to :standard
+  belongs_to :classroom
 
   validates :first_name,
             :middle_name,
@@ -12,10 +17,6 @@ class Student < ApplicationRecord
             :aadhaar_card_number,
             presence: true
   validates :aadhaar_card_number, numericality: true, uniqueness: true, length: { is: 12 }
-  belongs_to :standard
-  belongs_to :classroom
-  has_one :user, as: :login
-  has_many :addresses, as: :addressable
 
   after_create :create_user
 
