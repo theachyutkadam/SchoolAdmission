@@ -2,7 +2,9 @@ class AddressesController < ApplicationController
   before_action :find_address, only: %i[edit update]
   before_action :build_address, only: %i[new create]
 
-  def index; end
+  def index
+    @addresses = Address.all
+  end
 
   def new
     @user = User.find(params[:user])
@@ -17,7 +19,6 @@ class AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
-
     if @address.save
       redirect_to new_address_path(user: @address.user_id)
       flash[:success] = 'Address Create Successfully'
