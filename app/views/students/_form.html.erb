@@ -12,23 +12,90 @@
       </ul>
     </div>
   <% end %>
+  <div class= "form-group">
+    <%=f.text_field :first_name, placeholder: "First Name", class: "form-control"%>
+  </div>
 
-  <%=f.text_field :first_name, placeholder: "First Name"%><br><br>
-  <%=f.text_field :middle_name, placeholder: "Middle Name"%><br><br>
-  <%=f.text_field :last_name, placeholder: "Last Name"%><br><br>
-  <%=f.text_field :mother_name, placeholder: "Mother Name"%><br><br>
-  Birth Date:- <%=f.date_field :date_of_birth%><br><br>
-  Gender:-<br>
-  Male<%=f.radio_button :gender, "Male"%>
-  Female<%=f.radio_button :gender, "Female"%>
-  Transgender<%=f.radio_button :gender, "Transgender"%><br><br>
-  Standard:- <%=f.collection_select :standard_id, Standard.all, :id, :name%><br><br>
-  Classroom:- <%=f.collection_select :classroom_id, Classroom.all, :id, :medium%><br><br>
-  <%=f.text_field :aadhaar_card_number, placeholder: "Aadhaar Card Number"%><br><br>
-  <%=f.text_field :town, placeholder: "Town Name"%><br><br>
-  Is Handicap:- <%=f.check_box :is_handicap%><br><br>
-  <%=f.text_area :handicap_details, placeholder: "Handicap Details"%><br><br>
-  Is Active:- <%=f.check_box :is_active%><br><br>
-  <%=f.submit%>
-  <%=link_to "Back", students_path%>
+  <div class= "form-group">
+    <%=f.text_field :middle_name, placeholder: "Middle Name", class: "form-control"%>
+  </div>
+
+  <div class= "form-group">
+    <%=f.text_field :last_name, placeholder: "Last Name", class: "form-control"%>
+  </div>
+
+  <div class= "form-group">
+    <%=f.text_field :mother_name, placeholder: "Mother Name", class: "form-control"%>
+  </div>
+
+  <div class= "form-group">
+    <div class= "input-group date">
+      Birth Date:- <%=f.date_field :date_of_birth, class: "form-control"%>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-1">Gender</div>
+      <div class="col-sm-10">
+        <div class= "form-check">
+          <%=f.radio_button :gender, "Male", class:"form-check-input"%>
+          <%=f.label :male, "Male", class: "form-check-label"%>
+        </div>
+
+        <div class= "form-check">
+          <%=f.radio_button :gender, "Female", class:"form-check-input"%>
+          <%=f.label :female, "Female", class: "form-check-label"%>
+        </div>
+
+        <div class= "form-check">
+          <%=f.radio_button :gender, "Transgender", class:"form-check-input"%>
+          <%=f.label :transgender, "Transgender", class: "form-check-label"%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class= "form-group">
+    <div class="dropdown">
+      Standard:- <%=f.collection_select :standard_id, Standard.all, :id, :name, class: "form-control"%>
+    </div>
+  </div>
+
+  <div class= "form-group">
+    <div class="dropdown">
+      Classroom:- <%=f.collection_select :classroom_id, Classroom.all, :id, :medium, class: "form-control"%>
+    </div>
+  </div>
+
+  <div class= "form-group">
+    <%=f.text_field :aadhaar_card_number, placeholder: "Aadhaar Card Number", class: "form-control"%>
+  </div>
+
+  <div class= "form-group">
+    <%=f.text_field :town, placeholder: "Town Name", class: "form-control"%>
+  </div>
+
+  <div class= "form-check">
+    <%=f.check_box :is_handicap, class:"form-check-input"%>
+    <%=f.label :is_handicap, "Is Handicap", class: "form-check-label"%>
+  </div>
+
+  <div class= "form-group">
+    <%=f.text_area :handicap_details, placeholder: "Handicap Details"%>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-1">Is Active</div>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <%=f.check_box :is_active, class:"form-check-input"%>
+      </div>
+    </div>
+  </div>
+
+  <div class= "form-group">
+    <%=f.submit class: "btn btn-primary"%>
+    <%=link_to "Back", students_path, class: "btn btn-secondary"%>
+  </div>
+
 <%end%>
