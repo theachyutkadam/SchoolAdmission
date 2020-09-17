@@ -6,7 +6,7 @@ RSpec.describe 'Addresses', type: :request do
       user = create(:user)
       post '/login', params: { login: { username: user.username, password: user.password } }
       address = create(:address, user: user)
-      get '/addresses'
+      get '/addresses/index'
       expect(response).to have_http_status(:success)
     end
   end
@@ -16,7 +16,7 @@ RSpec.describe 'Addresses', type: :request do
       user = create(:user)
       post '/login', params: { login: { username: user.username, password: user.password } }
       address = create(:address, user: user)
-      get '/addresses/new'
+      get "/addresses/new?user=#{user.id}"
       expect(response).to have_http_status(:success)
     end
   end
