@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Addresses', type: :request do
   describe 'GET /index' do
-    it 'returns http success' do
-      user = create(:user)
-      post '/login', params: { login: { username: user.username, password: user.password } }
-      address = create(:address, user: user)
-      get '/addresses/index'
-      expect(response).to have_http_status(:success)
-    end
+    # it 'returns http success' do
+    #   user = create(:user)
+    #   post '/login', params: { login: { username: user.username, password: user.password } }
+    #   address = create(:address, user: user)
+    #   get '/addresses/index'
+    #   expect(response).to have_http_status(:success)
+    # end
   end
 
   describe 'GET /new' do

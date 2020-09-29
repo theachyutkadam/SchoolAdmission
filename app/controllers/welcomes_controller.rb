@@ -1,7 +1,6 @@
 class WelcomesController < ApplicationController
   def index
     @current_user_role = current_user.login_type
-    # @current_user_name = current_user.username
     if @current_user_role == 'Headmaster'
       @teachers = Teacher.all
       @students = Student.all

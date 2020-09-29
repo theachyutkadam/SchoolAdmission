@@ -1,9 +1,4 @@
-<h1>Welcome to new page</h1>
-
-<%#= render "welcomes/index?user=#{@user.id}"%>
-
-<h1><%= link_to "LogOut", logout_path, method: :delete %></h1>
-<% if @current_user_role == "Teacher"%>
+<% if @current_user_role == "Headmaster"%>
   <%= render "welcomes/dashboard_headmaster"%>
 <% elsif @current_user_role == "Teacher"%>
   <%= render "welcomes/dashboard_teacher"%>
