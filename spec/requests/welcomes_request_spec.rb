@@ -30,11 +30,11 @@ RSpec.describe 'Welcomes', type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    # it 'should headmaster login' do
-    #   student = create(:student)
-    #   post '/login', params: { login: { username: user.username, password: user.password } }
-    #   get '/welcomes/index'
-    #   expect(response).to have_http_status(:success)
-    # end
+    it 'should headmaster login' do
+      student = create(:student)
+      post '/login', params: { login: { username: student.user.username, password: student.user.password } }
+      get '/welcomes/index'
+      expect(response).to have_http_status(:success)
+    end
   end
 end

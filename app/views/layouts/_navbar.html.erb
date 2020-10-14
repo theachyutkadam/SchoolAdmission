@@ -79,13 +79,7 @@
     <!-- page-content" -->
     <main class="page-content">
       <div class="container-fluid">
-        <% if @current_user_role == "Headmaster"%>
-          <%= render "welcomes/dashboard_headmaster"%>
-        <% elsif @current_user_role == "Teacher"%>
-          <%= render "layouts/teacher_navbar"%>
-        <% else @current_user_role == "Student"%>
-          <%= render "layouts/student_navbar"%>
-        <% end%>
+
         <hr>
         <footer class="text-center">
           <div class="mb-2">
