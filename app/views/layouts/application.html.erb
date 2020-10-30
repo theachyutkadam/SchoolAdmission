@@ -9,26 +9,30 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style= "margin:-116px 0px 121px 267px">
     <%if User.find_by_id(cookies[:user_id])%>
       <main class="page-content">
         <div class="container-fluid">
           <% if @current_user_role == "Teacher"%>
             <%= render "layouts/navbar"%>
           <% end%>
-          <hr>
-          <footer class="text-center">
-            <div class="mb-2">
-              <small>
-                © 2020 made with <i class="fa fa-heart" style="color:red"></i> by - <a target="_blank" rel="noopener noreferrer" href="#">
-                  Achyutam Kadam
-                </a>
-              </small>
-            </div>
-          </footer>
         </div>
       </main>
     <%end%>
     <%= yield %>
+    <main class="page-content">
+      <div class="container-fluid">
+        <hr>
+        <footer class="text-center">
+          <div class="mb-2">
+            <small>
+              © 2020 made with <i class="fa fa-heart" style="color:red"></i> by - <a target="_blank" rel="noopener noreferrer" href="#">
+                Achyutam Kadam
+              </a>
+            </small>
+          </div>
+        </footer>
+      </div>
+    </main>
   </body>
 </html>
