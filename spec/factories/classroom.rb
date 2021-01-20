@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :classroom do
     division { 'A' }
-    medium { "marathi" }
+    medium { 'marathi' }
     intake { 50 }
     association :standard
     association :teacher

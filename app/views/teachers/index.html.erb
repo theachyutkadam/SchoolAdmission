@@ -1,0 +1,23 @@
+<h3><%=link_to "Home", welcomes_index_path%></h3>
+<h3><%=link_to "New teacher", new_teacher_path%></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Mother Name</th>
+      <th>Gender</th>
+      <th>Action</th>
+    </tr>
+    <tbody>
+      <%@teachers.each do |teacher|%>
+        <tr>
+          <td><%="#{teacher.first_name} #{teacher.middle_name} #{teacher.last_name}"%></td>
+          <td><%=teacher.mother_name%></td>
+          <td><%=teacher.gender%></td>
+          <td><%=link_to "Edit", edit_teacher_path(teacher)%></td>
+          <td><%=link_to "Address", new_address_path(user: teacher.user.id)%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </thead>
+</table>

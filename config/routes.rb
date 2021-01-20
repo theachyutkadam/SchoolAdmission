@@ -4,5 +4,10 @@ Rails.application.routes.draw do
   delete '/logout', controller: :users, action: :logout
   root 'users#new'
   get 'welcomes/index'
+  resources :teachers
+  resources :students
   resources :standards
+  resources :classrooms
+  resources :addresses
+  resources :attendances
 end

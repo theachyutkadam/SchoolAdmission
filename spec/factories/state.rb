@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :state do
-    name { "state" }
+    name { 'state' }
     association :country
   end
 end

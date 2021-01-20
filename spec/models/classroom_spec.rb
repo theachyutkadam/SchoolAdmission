@@ -53,7 +53,7 @@ RSpec.describe Classroom, type: :model do
     it 'should give error message if intake is not a number' do
       classroom = build(:classroom, intake: 'invalid')
       classroom.save
-      expect(classroom.errors.messages[:intake].first).to eq("is not a number")
+      expect(classroom.errors.messages[:intake].first).to eq('is not a number')
     end
   end
 
@@ -64,6 +64,19 @@ RSpec.describe Classroom, type: :model do
 
     it 'should belongs_to standard' do
       expect(Classroom.reflect_on_association(:standard).macro).to be(:belongs_to)
+    end
+
+    it 'should has_many student' do
+      expect(Classroom.reflect_on_association(:students).macro).to eq(:has_many)
+    end
+  end
+
+  context '#soft_delete' do
+    it 'should soft delete the record' do
+      classroom = create(:classroom)
+      expect(classroom.deleted_at).to be_nil
+      classroom.soft_delete
+      expect(classroom.deleted_at).not_to be_nil
     end
   end
 end
