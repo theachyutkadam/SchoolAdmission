@@ -7,7 +7,7 @@ class AddressesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user])
+    @user = current_user
     @addresses = Address.all
   end
 
