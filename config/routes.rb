@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :students
       resources :districts
+      post '/login', controller: :users, action: :login
+      delete '/logout', controller: :users, action: :logout
     end
   end
-
 end
