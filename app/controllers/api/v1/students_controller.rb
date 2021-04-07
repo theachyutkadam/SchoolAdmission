@@ -5,7 +5,7 @@ class Api::V1::StudentsController < Api::V1::BaseController
 
   def index
     @students = Student.all
-    render json: @students
+    render json: @students, :except => [:handicap_details, :created_at, :updated_at, :classroom_id, :standard_id]
   end
 
   def new; end

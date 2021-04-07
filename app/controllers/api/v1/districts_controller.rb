@@ -5,7 +5,7 @@ class Api::V1::DistrictsController < Api::V1::BaseController
 
   def index
     @districts = District.all
-    render json: @districts
+    render json: @districts, :except => [:state_id, :created_at, :updated_at], :include => { :state => { :only => :name } }
   end
 
   def new; end
@@ -13,6 +13,10 @@ class Api::V1::DistrictsController < Api::V1::BaseController
   def edit; end
 
   def create
+    puts "--------------"
+    puts "--------------"
+    puts "--------------"
+    puts "--------------"
     @district = District.new(district_params)
     if @district.save
       redirect_to districts_path
@@ -44,6 +48,6 @@ class Api::V1::DistrictsController < Api::V1::BaseController
   end
 
   def district_params
-    params.require(:district).permit(:first_name, :middle_name, :last_name, :mother_name, :gender, :date_of_birth, :aadhaar_card_number, :standard_id, :classroom_id, :town, :is_handicap, :handicap_details, :is_active)
+    params.require(:district).permit(:name, :state_id)
   end
 end
