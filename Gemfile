@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'jbuilder', '~> 2.7'
-gem 'mysql2', '>= 0.4.4'
+# gem 'mysql2', '>= 0.4.4'
 # gem 'puma', '~> 4.1'
 gem 'pg'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
@@ -20,6 +20,8 @@ gem 'database_cleaner'
 # gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'cancancan'
+
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :find_student, only: %i[edit update]
+  before_action :find_student, only: %i[edit update destroy]
   before_action :build_student, only: %i[new create]
 
   def index
@@ -29,6 +29,12 @@ class StudentsController < ApplicationController
       render :edit
       flash[:notice] = 'Student Not Update!'
     end
+  end
+
+  def destroy
+    @student.destroy
+    redirect_to students_path
+    flash[:success] = 'Student Successfully delete'
   end
 
   private
