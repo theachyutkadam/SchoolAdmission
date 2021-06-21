@@ -1,5 +1,143 @@
-<%=form_for :login, url: login_path do |f|%>
-  <%=f.text_field :username, placeholder: "Username"%><br><br>
-  <%=f.password_field :password, placeholder: "Password"%><br><br>
-  <%=f.submit "login"%>
-<%end%>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<%# <script src="/__/firebase/8.6.7/firebase-app.js"></script> %>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#available-libraries -->
+<%# <script src="/__/firebase/8.6.7/firebase-analytics.js"></script> %>
+<!-- Initialize Firebase -->
+<!-- <script src="/__/firebase/init.js"></script> -->
+
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Welcome to Firebase Hosting</title>
+  </head>
+  <body>
+
+    <div class="forms-out">
+      <div class="forms-in">
+        <div id="login-page">
+          <h3>Sign In</h3>
+          <%=form_for :login, url: login_path do |f|%>
+            <%=f.text_field :username, placeholder: "Username"%><br><br>
+            <%=f.password_field :password, placeholder: "Password"%><br><br>
+            <%=f.submit "Sign In"%>
+          <%end%>
+
+          <div id="loginScreen">
+            <center><button id="login">SignUp with google</button></center>
+          </div>
+        </div>
+
+        <div id="homepage" class="hide">
+          <button id="signout">Sign Out</button>
+          <h3>Logged In</h3>
+        </div>
+
+        <div id="dashboard">
+          <div id="userDetails"></div>
+          <center><button id="logout">logout</button>
+          <button id="school">school app</button></center>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyBBMCqN3-nI74SsdrgBxD5911fzYi33cJk",
+        authDomain: "auth-408d5.firebaseapp.com",
+        databaseURL: "https://auth-408d5.firebaseapp.com",
+        projectId: "auth-408d5",
+        storageBucket: "auth-408d5.appspot.com",
+        messagingSenderId: "893699312924",
+        appId: "1:893699312924:web:85966824cc5ae73583bed9"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+
+      document.getElementById('dashboard').style.display="none"
+      document.getElementById('school').addEventListener('click', openSchoolApp)
+      function openSchoolApp() {
+        window.location.href = "https://school-d3e2b.web.app/";
+      }
+      document.getElementById('login').addEventListener('click', googleLogin)
+      document.getElementById('logout').addEventListener('click', logoutUser)
+
+      let provider = new firebase.auth.GoogleAuthProvider();
+      function googleLogin(){
+        console.log("hello login")
+        firebase.auth().signInWithPopup(provider).then((result) => {
+          console.log(result)
+          document.getElementById('loginScreen').style.display="none"
+          document.getElementById('login-page').style.display="none"
+          document.getElementById('dashboard').style.display="block"
+          // showUserDetails(result.user)
+          var userDetails = {email: result.user.email, displayName: result.user.displayName}
+          var url = '/sign_up'
+          console.log('======================');
+          console.log(userDetails);
+          $.ajax({
+            url: url,
+            data: userDetails,
+            type: "GET",
+            success: function (data,status,xhr) {// success callback function
+              alert("login success.");
+            },
+            error: function (jqXhr, textStatus, errorMessage) {// error callback
+              alert("error")
+            }
+          });
+        }).catch((error) => {
+          console.log(error)
+        });
+      }
+
+      function showUserDetails(user){
+        document.getElementById('userDetails').innerHTML = `<center>
+          <img src="${user.photoURL}" style="width:10%">
+          <p>Name: ${user.displayName}</p>
+          <p>Email: ${user.email}</p>
+          </center>
+        `
+      }
+
+      function checkAuthState(){
+        firebase.auth().onAuthStateChanged(user=>{
+          if(user){
+            document.getElementById('loginScreen').style.display="none"
+            document.getElementById('dashboard').style.display="block"
+            document.getElementById('login-page').style.display="none"
+            showUserDetails(user)
+          }else{
+
+          }
+        })
+      }
+
+      function logoutUser(){
+        console.log("hello logout")
+        firebase.auth().signOut().then(()=>{
+          document.getElementById('loginScreen').style.display="block"
+          document.getElementById('login-page').style.display="block"
+          document.getElementById('dashboard').style.display="none"
+        }).catch(e=>{
+          console.log(e)
+        })
+      }
+
+      checkAuthState()
+    </script>
+  </body>
+</html>
