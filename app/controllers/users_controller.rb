@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user
-  def new; end
+  def new
+    redirect_to welcomes_index_path if current_user.present?
+  end
 
   def login
     user = User.authenticate params[:login][:username], params[:login][:password]
