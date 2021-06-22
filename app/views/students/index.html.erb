@@ -6,6 +6,7 @@
       <th>Full Name</th>
       <th>Mother Name</th>
       <th>Gender</th>
+      <th>Standard</th>
       <th>Action</th>
     </tr>
     <tbody>
@@ -14,6 +15,7 @@
           <td><%="#{student.first_name} #{student.middle_name} #{student.last_name}"%></td>
           <td><%=student.mother_name%></td>
           <td><%=student.gender%></td>
+          <td><%=student.standard.name%></td>
           <td><%=link_to "Edit", edit_student_path(student)%></td>
         </tr>
       <%end%>

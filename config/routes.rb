@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   root 'users#new'
   get 'welcomes/index'
   resources :teachers
-  resources :students
+  resources :students do
+    collection do
+      get "generate_excel"
+    end
+  end
   resources :standards
   resources :classrooms
   resources :addresses

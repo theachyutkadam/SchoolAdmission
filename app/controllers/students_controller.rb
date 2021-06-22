@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   before_action :build_student, only: %i[new create]
 
   def index
-    @students = Student.all
+    @students = Student.includes(:standard).all
   end
 
   def new; end
@@ -28,6 +28,16 @@ class StudentsController < ApplicationController
     else
       render :edit
       flash[:notice] = 'Student Not Update!'
+    end
+  end
+
+  def generate_excel
+    @students = Student.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment; filename= students.xlsx"
+      }
+      format.html { render :index }
     end
   end
 

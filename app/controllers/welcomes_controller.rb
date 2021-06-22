@@ -5,7 +5,7 @@ class WelcomesController < ApplicationController
       @teachers = Teacher.all
       @students = Student.all
     elsif @current_user_role == 'Teacher'
-      @students = Teacher.find(current_user.login_id).classroom.students
+      @students = Teacher.find(current_user.login_id).classroom.students.includes(:standard)
     else @current_user_role == 'Student'
     end
   end

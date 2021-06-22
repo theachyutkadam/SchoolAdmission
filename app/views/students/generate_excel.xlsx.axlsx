@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Students") do |sheet|
+
+  heading =
+  sheet.add_row ["First Name", "Last Name"]
+  sheet.add_row ["Download at", Time.now.strftime("%b %-d, %Y")]
+  sheet.add_row []
+
+  @students.each do |student|
+    sheet.add_row [student.first_name, student.last_name]
+  end
+end

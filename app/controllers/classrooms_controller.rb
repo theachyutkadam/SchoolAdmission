@@ -3,7 +3,7 @@ class ClassroomsController < ApplicationController
   before_action :build_classroom, only: %i[new create]
 
   def index
-    @classrooms = Classroom.all
+    @classrooms = Classroom.includes(:standard).all
   end
 
   def new; end
